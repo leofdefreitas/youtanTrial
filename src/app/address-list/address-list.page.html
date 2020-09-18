@@ -1,0 +1,20 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>Endereços</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-list>
+		<ion-item *ngFor="let address of addresses" [routerLink]="['/', 'address', address.id]" detail>
+			<ion-label>{{address.address}}</ion-label>
+		</ion-item>
+	</ion-list>
+
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+		<ion-fab-button [routerLink]="['/', 'newAddress']">
+			<ion-icon name="add"></ion-icon>
+		</ion-fab-button>
+	</ion-fab>
+
+</ion-content>

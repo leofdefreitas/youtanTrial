@@ -1,0 +1,51 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-back-button></ion-back-button>
+		</ion-buttons>
+		<ion-title>Endereço</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<ion-item class="title" text-wrap>
+		<ion-label [ngClass]="{'warning': highlightRequiredFields == true && address.address == ''}"><strong>Endereço:</strong></ion-label>
+		<ion-input [(ngModel)]="address.address"></ion-input>
+	</ion-item>
+	<ion-item>
+		<ion-label [ngClass]="{'warning': highlightRequiredFields == true && address.date == ''}" position="floating">Data</ion-label>
+		<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="address.date" doneText="Confirmar" cancelText="Cancelar"></ion-datetime>
+	</ion-item>
+	<ion-item text-wrap>
+		<ion-label [ngClass]="{'warning': highlightRequiredFields == true && address.activityField == ''}" position="floating">Ramo de Atividade</ion-label>
+		<ion-input [(ngModel)]="address.activityField"></ion-input>
+	</ion-item>
+	<ion-item text-wrap>
+		<ion-label [ngClass]="{'warning': highlightRequiredFields == true && address.classDesc == ''}" position="floating">Classe</ion-label>
+		<ion-input [(ngModel)]="address.classDesc"></ion-input>
+	</ion-item>
+	<ion-item text-wrap>
+		<ion-label [ngClass]="{'warning': highlightRequiredFields == true && address.realtyType.id == 0}" position="floating">Tipo de Imóvel</ion-label>
+		<ion-select [(ngModel)]="address.realtyType.id">
+			<ion-select-option *ngFor="let rt of realtyTypes" [value]="rt.id">{{rt.realtyType}}</ion-select-option>
+		</ion-select>
+	</ion-item>
+	<ion-item>
+		<ion-label [ngClass]="{'warning': highlightRequiredFields == true && address.description == ''}" position="floating">Descrição</ion-label>
+		<ion-textarea [(ngModel)]="address.description"></ion-textarea>
+	</ion-item>
+	<ion-item>
+		<ion-label [ngClass]="{'warning': highlightRequiredFields == true && address.startingDate == ''}" position="floating">Data de Acompanhamento - Início</ion-label>
+		<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="address.startingDate" doneText="Confirmar" cancelText="Cancelar" [max]="nextYear"></ion-datetime>
+	</ion-item>
+	<ion-item>
+		<ion-label [ngClass]="{'warning': highlightRequiredFields == true && address.endingDate == ''}" position="floating">Data de Acompanhamento - Término</ion-label>
+		<ion-datetime displayFormat="DD/MM/YYYY" [(ngModel)]="address.endingDate" doneText="Confirmar" cancelText="Cancelar" max="2030"></ion-datetime>
+	</ion-item>
+
+	<ion-fab vertical="bottom" horizontal="end" slot="fixed">
+		<ion-fab-button (click)="saveAddress()">
+			Salvar	
+		</ion-fab-button>
+	</ion-fab>
+</ion-content>
